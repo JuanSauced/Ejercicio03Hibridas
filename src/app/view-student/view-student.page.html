@@ -9,27 +9,38 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <img [src]="student.photo" />
-        <ion-card-header>
-            <ion-card-title>
-                <ion-label>
-                    {{student.controlnumber}}
-                    <ion-chip color="primary" outline="true" class="ion-float-right">
-                        <ion-label>{{student.career}}</ion-label>
-                    </ion-chip>
-                </ion-label>
-            </ion-card-title>
-            <ion-card-subtitle>{{student.email}}</ion-card-subtitle>
-        </ion-card-header>
+    <ion-grid offset="4">
+        <ion-row class="ion-justify-content-around">
+            <!-- número de control-->
+            <ion-col size="8">
+                <ion-card class="ion-padding-vertical">
+                    <img [src]="student.photo" height="300px" width="300px" />
+                    <ion-card-header>
+                        <ion-card-title class="ion-text-center">
+                            <ion-label>
+                                Número de control: {{student.controlnumber}}
+                            </ion-label>
 
-        <ion-card-content>
-            <h2>
-                CURP: {{student.curp}}
-            </h2>
-            <h2>
-                Edad: {{student.age}} años
-            </h2>
-        </ion-card-content>
-    </ion-card>
+                        </ion-card-title>
+                        <ion-card-subtitle>{{student.email}}</ion-card-subtitle>
+                    </ion-card-header>
+
+                    <ion-card-content class="ion-text-center">
+                        <h2>
+                            CURP: {{student.curp}}
+                        </h2>
+                        <h2>
+                            Edad: {{student.age}} años
+                        </h2>
+                        <label>
+                            <ion-chip color="primary" outline="true" class="ion-float-center">
+                                <ion-label>{{student.career}}</ion-label>
+                            </ion-chip>
+                        </label>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
 </ion-content>

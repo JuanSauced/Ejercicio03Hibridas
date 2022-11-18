@@ -14,19 +14,19 @@ export class StudentService {
         controlnumber: "02400391",
         age: 38,
         career: "ISC",
-        curp: "AOVI840917HNTRZS09",
-        email: "iarjona@ittepic.edu.mx",
-        name: "Israel Arjona Vizcaíno",
+        curp: "LOPJ770826HTSPRS68",
+        email: "Elertro@ittepic.edu.mx",
+        name: "Electro eltrico electrolitico",
         nip: 717,
         photo: 'https://picsum.photos/600/?random=1'
       }, 
       {
-        controlnumber: "12400391",
+        controlnumber: "18401202",
         age: 28,
         career: "IM",
-        curp: "AOCI840917HNTRZS09",
-        email: "iarjona2@ittepic.edu.mx",
-        name: "Israel Arjona Castañeda",
+        curp: "SAGJ991012HNTCRN03",
+        email: "elspoderman@ittepic.edu.mx",
+        name: "peter parker",
         nip: 818,
         photo: 'https://picsum.photos/600/?random=2'
       },
@@ -34,9 +34,9 @@ export class StudentService {
         controlnumber: "22400391",
         age: 18,
         career: "IC",
-        curp: "OOCI840917HNTRZS09",
-        email: "iarjona3@ittepic.edu.mx",
-        name: "Israel Arjona Méndez",
+        curp: "CURL770826MCSRZS65",
+        email: "pelirroja@ittepic.edu.mx",
+        name: "mary jane wattson",
         nip: 919,
         photo: 'https://picsum.photos/600/?random=3'
       }
@@ -58,5 +58,22 @@ export class StudentService {
     });
     return item;
   }
+  public newStudent(student:Student):void{
+    this.students.push(student);
+  }
+
+  public updateStudent(st:Student[]){
+    this.students = st;
+  }
+  public getStudentIndexByControlNumber(cn: string): number {
+    console.log(cn)
+    let index = this.students.findIndex(
+      (student) => {
+        return student.controlnumber===cn;
+      }
+    );
+    return index
+  }
+
 
 }
