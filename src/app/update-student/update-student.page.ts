@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-student',
@@ -17,7 +18,8 @@ export class UpdateStudentPage implements OnInit {
   public validationMessages: Object;
 
   constructor(private service: StudentService, private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute, private tc: ToastController,private alertController: AlertController) { }
+    private activatedRoute: ActivatedRoute, private tc: ToastController, private alertController: AlertController,
+    private router: Router) { }
 
   ngOnInit() {
     this.recomendation()
@@ -74,13 +76,13 @@ export class UpdateStudentPage implements OnInit {
     }
     this.activatedRoute.queryParams.subscribe((params) => {
       console.log(params.st);
-      this.student=this.service.getStudentByControlNumber( params.st);
+      this.student = this.service.getStudentByControlNumber(params.st);
       this.setForm(this.student);
 
-      });
+    });
   }
 
-  async setForm(student:Student){
+  async setForm(student: Student) {
     this.myForm.controls['controlNumber'].setValue(student.controlnumber);
     this.myForm.controls['controlNumber'].disable();
     this.myForm.controls['name'].setValue(student.name);
@@ -92,7 +94,7 @@ export class UpdateStudentPage implements OnInit {
     this.myForm.controls['photo'].setValue(student.photo);
   }
 
-  async updateStudent(){
+  async updateStudent() {
     if (this.myForm.valid) {
       console.log(this.myForm.get('controlNumber').value)
       let index = this.service.getStudentIndexByControlNumber(this.myForm.get('controlNumber').value);
@@ -115,6 +117,8 @@ export class UpdateStudentPage implements OnInit {
       });
       toast.present();
       this.myForm.controls['controlNumber'].enable();
+      this.router.navigate(
+        ['/home'])
     } else {
       let toast = await this.tc.create({
         message: 'Verifique que todos los campos estén correctos',
